@@ -1,16 +1,36 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Utilisateur {
-	Vector<Groupe> listeGroupes;
+	
+	private String name;
+	private ArrayList<Groupe> listeGroupes = new ArrayList<>();
 
-	public Vector<Groupe> getListeGroupes() {
-		return listeGroupes;
+	public Utilisateur(String name) {
+		this.name = name;
 	}
 
-	public void setListeGroupes(Vector<Groupe> listeGroupes) {
+	public Groupe[] getListeGroupes() {
+		return listeGroupes.toArray(new Groupe[0]);
+	}
+
+	public void setListeGroupes(ArrayList<Groupe> listeGroupes) {
 		this.listeGroupes = listeGroupes;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 	

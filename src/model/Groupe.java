@@ -1,29 +1,46 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Groupe {
- Vector<Objet> listeObjet;
- Vector<Utilisateur> listeMembres;
- Vector<Utilisateur> listeGestionnaire;
- 
-public Vector<Objet> getListeObjet() {
+	private String name;
+private ArrayList<Objet> listeObjet = new ArrayList<>();
+private ArrayList<Utilisateur> listeMembres = new ArrayList<>();
+
+
+
+
+public Groupe(String name) {
+	super();
+	this.name = name;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public ArrayList<Objet> getListeObjet() {
 	return listeObjet;
 }
-public void setListeObjet(Vector<Objet> listeObjet) {
+public void setListeObjet(ArrayList<Objet> listeObjet) {
 	this.listeObjet = listeObjet;
 }
-public Vector<Utilisateur> getListeMembres() {
+public ArrayList<Utilisateur> getListeMembres() {
 	return listeMembres;
 }
-public void setListeMembres(Vector<Utilisateur> listeMembres) {
+public void setListeMembres(ArrayList<Utilisateur> listeMembres) {
 	this.listeMembres = listeMembres;
 }
-public Vector<Utilisateur> getListeGestionnaire() {
-	return listeGestionnaire;
+public boolean addUtilisateur(Utilisateur e) {
+	return listeMembres.add(e);
 }
-public void setListeGestionnaire(Vector<Utilisateur> listeGestionnaire) {
-	this.listeGestionnaire = listeGestionnaire;
+public int countUtilisateur() {
+	return listeMembres.size();
 }
  
+ 
+ 
+
 }
