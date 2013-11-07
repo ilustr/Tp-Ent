@@ -3,15 +3,34 @@ package model;
 import java.util.Vector;
 
 public abstract class Objet {
-	Vector<Groupe> listeGroupes;
+	Groupe groupe;
 	Repertoire repertoireParent;
+	protected String nom;
 	
-	public Vector<Groupe> getListeGroupes() {
-		return listeGroupes;
+	public Objet(String nom){
+		this.nom = nom;
 	}
-	public void setListeGroupes(Vector<Groupe> listeGroupes) {
-		this.listeGroupes = listeGroupes;
+	
+	@Override
+	public String toString() {
+		return this.nom;
 	}
+
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Groupe getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
+	}
+
 	public Repertoire getRepertoireParent() {
 		return repertoireParent;
 	}

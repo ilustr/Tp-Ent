@@ -1,9 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Vector;
 
-public class Utilisateur {
+public class Utilisateur extends Observable{
 	
 	private String name;
 	private ArrayList<Groupe> listeGroupes = new ArrayList<>();
@@ -14,6 +15,12 @@ public class Utilisateur {
 
 	public Groupe[] getListeGroupes() {
 		return listeGroupes.toArray(new Groupe[0]);
+	}
+
+	public void addGroupe(Groupe g) {
+		listeGroupes.add(g);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void setListeGroupes(ArrayList<Groupe> listeGroupes) {

@@ -6,6 +6,7 @@ public class GroupePersonnel extends Groupe{
 	
 	public GroupePersonnel(String name, Utilisateur utilisateurJJacques) {
 		super(name);
+		utilisateurJJacques.addGroupe(this);
 		this.gestionnaire = utilisateurJJacques;
 	}
 

@@ -2,10 +2,14 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Application;
+import model.Document;
 import model.Groupe;
 import model.GroupeInstitutionnel;
 import model.GroupePersonnel;
+import model.Objet;
 import model.Portail;
+import model.Repertoire;
 import model.Utilisateur;
 
 public class InitController {
@@ -22,15 +26,34 @@ public class InitController {
 		
 		Groupe groupeInfo = new GroupeInstitutionnel("STIC Info");
 		Groupe groupeTr = new GroupeInstitutionnel("STIC TR");
+		Groupe groupeEtudiant = new GroupeInstitutionnel("Etudiant");
+		Groupe groupeSFA = new GroupeInstitutionnel("SFA");
 
 		Groupe groupePerso = new GroupePersonnel("Perso JJ", utilisateurJJacques);
 
 		groupeInfo.addUtilisateur(utilisateurJJacques);
 		groupeInfo.addUtilisateur(utilisateurJClaude);
 		groupeInfo.addUtilisateur(utilisateurJPaul);
+		groupeInfo.addObjet(new Document("Correction TP"));
+		groupeInfo.addObjet(new Document("Photo"));
+		
+		groupeSFA.addUtilisateur(utilisateurJJacques);
+		groupeSFA.addUtilisateur(utilisateurJPaul);
+		groupeSFA.addUtilisateur(utilisateurJP);
+		
+		groupeEtudiant.addUtilisateur(utilisateurJJacques);
+		groupeEtudiant.addUtilisateur(utilisateurJClaude);
+		groupeEtudiant.addUtilisateur(utilisateurJPaul);
+		groupeEtudiant.addUtilisateur(utilisateurJP);
+		groupeEtudiant.addUtilisateur(utilisateurJRene);
+		groupeEtudiant.addObjet(new Application("Tp1"));
+		groupeEtudiant.addObjet(new Repertoire("Repertoire Master"));
+		groupeEtudiant.addObjet(new Document("Essai du TP"));
 
 		groupeTr.addUtilisateur(utilisateurJP);
 		groupeTr.addUtilisateur(utilisateurJRene);
+		
+		
 		
 		groupePerso.addUtilisateur(utilisateurJPaul);
 
@@ -43,5 +66,7 @@ public class InitController {
 		portail.addUtilisateur(utilisateurJP);
 		portail.addUtilisateur(utilisateurJPaul);
 		portail.addUtilisateur(utilisateurJJacques);
+		
 	}
+	
 }
