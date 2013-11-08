@@ -4,34 +4,53 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
+import view.ICreerObjetView;
+import model.Application;
+import model.Document;
 import model.Groupe;
-import model.GroupePersonnel;
-import model.Portail;
-import model.Utilisateur;
+import model.Objet;
+import model.Repertoire;
+import model.Objet.typeObjet;
+
+
 
 public class CreerObjetAction implements ActionListener {
 
-	private JFrame frame;
-	private Utilisateur utilisateur;
+	private ICreerObjetView frame;
+	private String nomObjet;
+	private Objet objet;
+	private Groupe groupe;
+	private typeObjet type;
 
-	public CreerObjetAction(JFrame frame, Utilisateur utilisateur) {
+	public CreerObjetAction(ICreerObjetView frame, Groupe groupe) {
 		this.frame = frame;
-		this.utilisateur = utilisateur;
+		this.groupe = groupe;
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String texte = "Taper le nom du groupe à ajouter";
-		String s = (String) JOptionPane.showInputDialog(this.frame, texte,
-				"Creer Groupe", JOptionPane.PLAIN_MESSAGE);
 
-		// If a string was returned, say so.
-		if ((s != null) && (s.length() > 0)) {
-			Groupe gp = new GroupePersonnel(s, this.utilisateur);
-			Portail.getInstance().addGroupe(gp);
+		this.nomObjet = frame.getNom();
+		this.type = frame.getTypeObjet();
+		if(!this.nomObjet.equals("")){
+			switch(this.type){
+			case Repertoire:
+				objet = new Repertoire(this.nomObjet);
+				break;
+			case Application:
+				objet = new Application(this.nomObjet);
+				break;
+			case Document:
+				objet = new Document(this.nomObjet);
+				break;
+			default:
+				break;
+			}
+			groupe.addObjet(objet);
 		}
+		frame.dispose();
 	}
 
 }

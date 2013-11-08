@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 import model.Groupe;
 import model.Objet;
 import model.Utilisateur;
+import controller.AjouterObjetAction;
 import controller.CreerGroupeAction;
 
 public class UserView extends JFrame implements Observer {
@@ -23,10 +24,12 @@ public class UserView extends JFrame implements Observer {
 	private JList<Groupe> jListGroupe;
 	private JList<Objet> jListObjet;
 	private Utilisateur utilisateur;
+	private AjouterObjetAction ajouterObjetAction;
+	UserView moi = this;
 
 	public UserView(Utilisateur utilisateur) {
 		super();
-
+		
 		// Caractéristique générales de la fenetre
 		this.utilisateur = utilisateur;
 		this.utilisateur.addObserver(this);
@@ -42,10 +45,17 @@ public class UserView extends JFrame implements Observer {
 		JPanel pDroit = new JPanel();
 		pDroit.setLayout(new BorderLayout());
 
-		// Action pour le bouton
-		JButton buttonAjout = new JButton("Ajouter");
+		// Action pour les boutons
+		JButton buttonAjout = new JButton("Ajouter Groupe");
 		buttonAjout.addActionListener(new CreerGroupeAction(this, utilisateur));
-		pBas.add(buttonAjout, BorderLayout.CENTER);
+		pBas.add(buttonAjout, BorderLayout.EAST);
+		
+		final JButton buttonAjoutObjet = new JButton("Ajouter Objet");
+		ajouterObjetAction = new AjouterObjetAction();
+		buttonAjoutObjet.addActionListener(ajouterObjetAction);
+		buttonAjoutObjet.setEnabled(false);
+		pBas.add(buttonAjoutObjet, BorderLayout.WEST);
+		
 
 		// Liste des objets
 		Objet[] objets = new Objet[0];
@@ -63,11 +73,15 @@ public class UserView extends JFrame implements Observer {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (jListGroupe.getSelectedValue() != null)
-					jListObjet.setListData(jListGroupe.getSelectedValue()
-							.getListeObjet());
+				if (jListGroupe.getSelectedValue() != null){
+					buttonAjoutObjet.setEnabled(false);
+					jListObjet.setListData(jListGroupe.getSelectedValue().getListeObjet());
+					((Groupe) jListGroupe.getSelectedValue()).addObserver(moi);
+					ajouterObjetAction.setGroupe(jListGroupe.getSelectedValue());					
+				}
 				else
 					jListObjet.setListData(new Objet[0]);
+					buttonAjoutObjet.setEnabled(true);
 			}
 		});
 		JScrollPane scrollPaneGroupe = new JScrollPane();

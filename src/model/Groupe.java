@@ -1,12 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-public class Groupe implements TreeModel {
+public class Groupe extends Observable{
 	private String name;
 	private ArrayList<Objet> listeObjet = new ArrayList<>();
 	private ArrayList<Utilisateur> listeMembres = new ArrayList<>();
@@ -31,6 +32,8 @@ public class Groupe implements TreeModel {
 	public void addObjet(Objet e) {
 		e.setGroupe(this);
 		listeObjet.add(e);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void setListeObjet(ArrayList<Objet> listeObjet) {
@@ -65,54 +68,6 @@ public class Groupe implements TreeModel {
 	@Override
 	public String toString() {
 		return name;
-	}
-
-	@Override
-	public void addTreeModelListener(TreeModelListener l) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Object getChild(Object parent, int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getChildCount(Object parent) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getIndexOfChild(Object parent, Object child) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object getRoot() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isLeaf(Object node) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void removeTreeModelListener(TreeModelListener l) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void valueForPathChanged(TreePath path, Object newValue) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

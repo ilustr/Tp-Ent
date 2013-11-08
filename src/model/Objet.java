@@ -4,6 +4,7 @@ package model;
 public abstract class Objet {
 	Groupe groupe;
 	Repertoire repertoireParent;
+	public static enum typeObjet {Application, Document, Repertoire};
 	protected String nom;
 
 	public Objet(String nom) {
