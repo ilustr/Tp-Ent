@@ -24,9 +24,21 @@ public class Groupe extends Observable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public int indexOfObjet(Object o) {
+		return listeObjet.indexOf(o);
+	}
 
 	public Objet[] getListeObjet() {
 		return listeObjet.toArray(new Objet[0]);
+	}
+	
+	public Objet getObjet(int index){
+		return listeObjet.get(index);
+	}
+
+	public int countObjet() {
+		return listeObjet.size();
 	}
 
 	public void addObjet(Objet e) {
