@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Portail {
 	ArrayList<Groupe> listeGroupe = new ArrayList<>();
 	ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
-	
-	private static Portail singleton = new Portail();
 
+	private static Portail singleton = new Portail();
 
 	private Portail() {
 		super();
@@ -48,6 +47,5 @@ public class Portail {
 	public int countUtilisateur() {
 		return utilisateurs.size();
 	}
-	
-	
+
 }

@@ -1,46 +1,43 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.Application;
 import model.Document;
 import model.Groupe;
 import model.GroupeInstitutionnel;
 import model.GroupePersonnel;
-import model.Objet;
 import model.Portail;
 import model.Repertoire;
 import model.Utilisateur;
 
 public class InitController {
 
-	public static void initPortail()
-	{
+	public static void initPortail() {
 		Portail portail = Portail.getInstance();
-		
+
 		Utilisateur utilisateurJRene = new Utilisateur("Jean-René");
 		Utilisateur utilisateurJClaude = new Utilisateur("Jean-Claude");
 		Utilisateur utilisateurJP = new Utilisateur("Jean-Pierre");
 		Utilisateur utilisateurJPaul = new Utilisateur("Jean-Paul");
 		Utilisateur utilisateurJJacques = new Utilisateur("Jean-Jacques");
-		
+
 		Groupe groupeInfo = new GroupeInstitutionnel("STIC Info");
 		Groupe groupeTr = new GroupeInstitutionnel("STIC TR");
 		Groupe groupeEtudiant = new GroupeInstitutionnel("Etudiant");
 		Groupe groupeSFA = new GroupeInstitutionnel("SFA");
 
-		Groupe groupePerso = new GroupePersonnel("Perso JJ", utilisateurJJacques);
+		Groupe groupePerso = new GroupePersonnel("Perso JJ",
+				utilisateurJJacques);
 
 		groupeInfo.addUtilisateur(utilisateurJJacques);
 		groupeInfo.addUtilisateur(utilisateurJClaude);
 		groupeInfo.addUtilisateur(utilisateurJPaul);
 		groupeInfo.addObjet(new Document("Correction TP"));
 		groupeInfo.addObjet(new Document("Photo"));
-		
+
 		groupeSFA.addUtilisateur(utilisateurJJacques);
 		groupeSFA.addUtilisateur(utilisateurJPaul);
 		groupeSFA.addUtilisateur(utilisateurJP);
-		
+
 		groupeEtudiant.addUtilisateur(utilisateurJJacques);
 		groupeEtudiant.addUtilisateur(utilisateurJClaude);
 		groupeEtudiant.addUtilisateur(utilisateurJPaul);
@@ -52,9 +49,7 @@ public class InitController {
 
 		groupeTr.addUtilisateur(utilisateurJP);
 		groupeTr.addUtilisateur(utilisateurJRene);
-		
-		
-		
+
 		groupePerso.addUtilisateur(utilisateurJPaul);
 
 		portail.addGroupe(groupePerso);
@@ -66,7 +61,7 @@ public class InitController {
 		portail.addUtilisateur(utilisateurJP);
 		portail.addUtilisateur(utilisateurJPaul);
 		portail.addUtilisateur(utilisateurJJacques);
-		
+
 	}
-	
+
 }

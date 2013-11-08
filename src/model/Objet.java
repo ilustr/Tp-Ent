@@ -1,16 +1,15 @@
 package model;
 
-import java.util.Vector;
 
 public abstract class Objet {
 	Groupe groupe;
 	Repertoire repertoireParent;
 	protected String nom;
-	
-	public Objet(String nom){
+
+	public Objet(String nom) {
 		this.nom = nom;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.nom;
@@ -19,6 +18,7 @@ public abstract class Objet {
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -34,9 +34,9 @@ public abstract class Objet {
 	public Repertoire getRepertoireParent() {
 		return repertoireParent;
 	}
+
 	public void setRepertoireParent(Repertoire repertoireParent) {
 		this.repertoireParent = repertoireParent;
 	}
-	
-	
+
 }

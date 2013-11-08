@@ -2,10 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Vector;
 
-public class Utilisateur extends Observable{
-	
+public class Utilisateur extends Observable {
+
 	private String name;
 	private ArrayList<Groupe> listeGroupes = new ArrayList<>();
 
@@ -39,6 +38,5 @@ public class Utilisateur extends Observable{
 	public String toString() {
 		return name;
 	}
-	
-	
+
 }
