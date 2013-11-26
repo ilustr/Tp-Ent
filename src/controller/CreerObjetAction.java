@@ -19,6 +19,7 @@ public class CreerObjetAction implements ActionListener {
 	private Groupe groupe;
 	private typeObjet type;
 	private Repertoire repertoire;
+	private model.Objet.sousType stype;
 
 	public CreerObjetAction(CreerObjetView frame, Groupe groupe) {
 		this.frame = frame;
@@ -30,18 +31,19 @@ public class CreerObjetAction implements ActionListener {
 
 		this.nomObjet = frame.getNom();
 		this.type = frame.getTypeObjet();
+		this.stype = frame.getSousTypeObjet();
 		this.repertoire = frame.getRepertoire();
 
 		if (!this.nomObjet.equals("")) {
 			switch (this.type) {
 			case Repertoire:
-				objet = new Repertoire(this.nomObjet);
+				objet = new Repertoire(this.nomObjet, this.stype);
 				break;
 			case Application:
-				objet = new Application(this.nomObjet);
+				objet = new Application(this.nomObjet, this.stype);
 				break;
 			case Document:
-				objet = new Document(this.nomObjet);
+				objet = new Document(this.nomObjet, this.stype);
 				break;
 			default:
 				break;

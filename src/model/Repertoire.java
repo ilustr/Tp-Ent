@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import model.Objet.sousType;
+
 public class Repertoire extends Objet {
 
 	private ArrayList<Objet> listeObjet = new ArrayList<Objet>();
@@ -34,8 +36,8 @@ public class Repertoire extends Objet {
 		this.listeObjet = listeObjet;
 	}
 
-	public Repertoire(String nom) {
-		super(nom);
+	public Repertoire(String nom, sousType type) {
+		super(nom, type);
 		// TODO Auto-generated constructor stub
 	}
 

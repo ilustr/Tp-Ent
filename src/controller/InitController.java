@@ -5,6 +5,7 @@ import model.Document;
 import model.Groupe;
 import model.GroupeInstitutionnel;
 import model.GroupePersonnel;
+import model.Objet;
 import model.Portail;
 import model.Repertoire;
 import model.Utilisateur;
@@ -20,16 +21,18 @@ public class InitController {
 		Utilisateur utilisateurJPaul = new Utilisateur("Jean-Paul");
 		Utilisateur utilisateurJJacques = new Utilisateur("Jean-Jacques");
 
-		Repertoire repertoire = new Repertoire("Repertoire TP");
-		Document d1 = new Document("Essai du TP");
-		Document d2 = new Document("Essai du TP1");
-		Document d3 = new Document("Essai du TP2");
-		Document d4 = new Document("Essai du TP3");
+		Repertoire repertoire = new Repertoire("Repertoire TP", Objet.sousType.Conteneur);
+		Document d1 = new Document("Essai du TP", Objet.sousType.TP);
+		Document d2 = new Document("Essai du TP1", Objet.sousType.TP);
+		Document d3 = new Document("Essai du TP2", Objet.sousType.TP);
+		Document d4 = new Document("Essai du Correction TP3", Objet.sousType.Correction);
+		Document d5 = new Document("Essai du Correction TP1", Objet.sousType.Correction);
 
 		repertoire.addObjet(d1);
 		repertoire.addObjet(d2);
 		repertoire.addObjet(d3);
 		repertoire.addObjet(d4);
+		repertoire.addObjet(d5);
 
 		Groupe groupeInfo = new GroupeInstitutionnel("STIC Info");
 		Groupe groupeTr = new GroupeInstitutionnel("STIC TR");
@@ -42,8 +45,8 @@ public class InitController {
 		groupeInfo.addUtilisateur(utilisateurJJacques);
 		groupeInfo.addUtilisateur(utilisateurJClaude);
 		groupeInfo.addUtilisateur(utilisateurJPaul);
-		groupeInfo.addObjet(new Document("Correction TP"));
-		groupeInfo.addObjet(new Document("Photo"));
+		groupeInfo.addObjet(new Document("Correction TP", Objet.sousType.Correction));
+		groupeInfo.addObjet(new Document("Photo", Objet.sousType.Divers));
 
 		groupeSFA.addUtilisateur(utilisateurJJacques);
 		groupeSFA.addUtilisateur(utilisateurJPaul);
@@ -54,7 +57,7 @@ public class InitController {
 		groupeEtudiant.addUtilisateur(utilisateurJPaul);
 		groupeEtudiant.addUtilisateur(utilisateurJP);
 		groupeEtudiant.addUtilisateur(utilisateurJRene);
-		groupeEtudiant.addObjet(new Application("Tp1"));
+		groupeEtudiant.addObjet(new Application("Tp1", Objet.sousType.TP));
 		groupeEtudiant.addObjet(repertoire);
 
 		groupeTr.addUtilisateur(utilisateurJP);

@@ -8,14 +8,20 @@ public abstract class Objet extends Observable {
 	public static enum typeObjet {
 		Application, Document, Repertoire
 	};
+	
+	public static enum sousType {
+		Correction, TP, TD, Cours, Matiére, Conteneur, Divers
+	};
 
 	Groupe groupe;
 	Repertoire repertoireParent;
+	sousType type;
 	protected String nom;
 	private ArrayList<Link> links = new ArrayList<>();
 
-	public Objet(String nom) {
+	public Objet(String nom, sousType type) {
 		this.nom = nom;
+		this.type = type;
 	}
 
 	@Override
@@ -29,6 +35,14 @@ public abstract class Objet extends Observable {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public sousType getType() {
+		return type;
+	}
+
+	public void setType(sousType type) {
+		this.type = type;
 	}
 
 	public Groupe getGroupe() {

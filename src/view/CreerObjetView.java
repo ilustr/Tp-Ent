@@ -22,6 +22,7 @@ public class CreerObjetView extends JFrame {
 	private JTextField nameText;
 	private Repertoire repertoire;
 	JComboBox<typeObjet> listeType;
+	JComboBox<Objet.sousType> listeTypeObjet;
 
 	public CreerObjetView(Groupe groupe) {
 		this(groupe, null);
@@ -34,12 +35,13 @@ public class CreerObjetView extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(" Nouvel Objet ");
 		setSize(600, 200);
-		setLayout(new GridLayout(3, 2));
+		setLayout(new GridLayout(4, 2));
 
 		nameText = new JTextField();
 
 		listeType = new JComboBox<typeObjet>(Objet.typeObjet.values());
-
+		listeTypeObjet = new JComboBox<Objet.sousType>(Objet.sousType.values());
+		
 		JButton valider = new JButton("Valider");
 		valider.addActionListener(new CreerObjetAction(this, Groupe));
 
@@ -54,6 +56,8 @@ public class CreerObjetView extends JFrame {
 
 		this.add(new JLabel("Type de l'objet : "));
 		this.add(listeType);
+		this.add(new JLabel("Sous-Type de l'objet : "));
+		this.add(listeTypeObjet);
 		this.add(new JLabel("Nom de l'objet : "));
 		this.add(nameText);
 		this.add(valider);
@@ -72,6 +76,10 @@ public class CreerObjetView extends JFrame {
 
 	public typeObjet getTypeObjet() {
 		return (typeObjet) listeType.getSelectedItem();
+	}
+
+	public Objet.sousType getSousTypeObjet() {
+		return (Objet.sousType) listeTypeObjet.getSelectedItem();
 	}
 
 	public Repertoire getRepertoire() {
