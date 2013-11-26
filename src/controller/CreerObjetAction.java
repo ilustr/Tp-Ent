@@ -3,39 +3,37 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
-import view.ICreerObjetView;
 import model.Application;
 import model.Document;
 import model.Groupe;
 import model.Objet;
-import model.Repertoire;
 import model.Objet.typeObjet;
-
-
+import model.Repertoire;
+import view.CreerObjetView;
 
 public class CreerObjetAction implements ActionListener {
 
-	private ICreerObjetView frame;
+	private CreerObjetView frame;
 	private String nomObjet;
 	private Objet objet;
 	private Groupe groupe;
 	private typeObjet type;
+	private Repertoire repertoire;
 
-	public CreerObjetAction(ICreerObjetView frame, Groupe groupe) {
+	public CreerObjetAction(CreerObjetView frame, Groupe groupe) {
 		this.frame = frame;
 		this.groupe = groupe;
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		this.nomObjet = frame.getNom();
 		this.type = frame.getTypeObjet();
-		if(!this.nomObjet.equals("")){
-			switch(this.type){
+		this.repertoire = frame.getRepertoire();
+
+		if (!this.nomObjet.equals("")) {
+			switch (this.type) {
 			case Repertoire:
 				objet = new Repertoire(this.nomObjet);
 				break;
@@ -48,7 +46,11 @@ public class CreerObjetAction implements ActionListener {
 			default:
 				break;
 			}
-			groupe.addObjet(objet);
+
+			if (this.repertoire != null)
+				this.repertoire.addObjet(objet);
+			else
+				groupe.addObjet(objet);
 		}
 		frame.dispose();
 	}

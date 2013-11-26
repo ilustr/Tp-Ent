@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.Utilisateur;
-import view.ILoginView;
+import view.PortailView;
 import view.UserView;
 
 public class ConnectionAction implements ActionListener {
 
-	private ILoginView loginView;
+	private PortailView loginView;
 
-	public ConnectionAction(ILoginView portailView) {
+	public ConnectionAction(PortailView portailView) {
 		super();
 		this.loginView = portailView;
 	}

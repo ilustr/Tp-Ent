@@ -4,6 +4,18 @@ import java.util.ArrayList;
 
 public class Portail {
 	ArrayList<Groupe> listeGroupe = new ArrayList<>();
+
+	public boolean removeGroupe(Groupe groupe) {
+		for (Utilisateur u : groupe.getListeMembres()) {
+			u.removeGroupe(groupe);
+		}
+
+		for (Utilisateur u : groupe.getListeGestionnaire()) {
+			u.removeGroupe(groupe);
+		}
+		return listeGroupe.remove(groupe);
+	}
+
 	ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
 
 	private static Portail singleton = new Portail();

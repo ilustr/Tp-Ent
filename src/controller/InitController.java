@@ -19,7 +19,7 @@ public class InitController {
 		Utilisateur utilisateurJP = new Utilisateur("Jean-Pierre");
 		Utilisateur utilisateurJPaul = new Utilisateur("Jean-Paul");
 		Utilisateur utilisateurJJacques = new Utilisateur("Jean-Jacques");
-		
+
 		Repertoire repertoire = new Repertoire("Repertoire TP");
 		Document d1 = new Document("Essai du TP");
 		Document d2 = new Document("Essai du TP1");
@@ -30,7 +30,7 @@ public class InitController {
 		repertoire.addObjet(d2);
 		repertoire.addObjet(d3);
 		repertoire.addObjet(d4);
-		
+
 		Groupe groupeInfo = new GroupeInstitutionnel("STIC Info");
 		Groupe groupeTr = new GroupeInstitutionnel("STIC TR");
 		Groupe groupeEtudiant = new GroupeInstitutionnel("Etudiant");

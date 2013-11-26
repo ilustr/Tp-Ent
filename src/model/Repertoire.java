@@ -5,10 +5,13 @@ import java.util.ArrayList;
 public class Repertoire extends Objet {
 
 	private ArrayList<Objet> listeObjet = new ArrayList<Objet>();
-	
-	public boolean addObjet(Objet e) {
+
+	public void addObjet(Objet e) {
 		e.setRepertoireParent(this);
-		return listeObjet.add(e);
+		listeObjet.add(e);
+
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public int indexOfObjet(Object o) {
@@ -40,4 +43,23 @@ public class Repertoire extends Objet {
 	public String toString() {
 		return super.toString() + " [Repertoire]";
 	}
+
+	public void removeObjet(Objet objet) {
+
+		if (listeObjet.contains(objet)) {
+			for (Link l : objet.getLinks()) {
+				l.getObjetA().removeLink(l);
+				l.getObjetB().removeLink(l);
+			}
+			listeObjet.remove(objet);
+			this.setChanged();
+			this.notifyObservers();
+		} else {
+			for (Objet nObjet : listeObjet) {
+				if (nObjet instanceof Repertoire)
+					((Repertoire) nObjet).removeObjet(objet);
+			}
+		}
+	}
+
 }

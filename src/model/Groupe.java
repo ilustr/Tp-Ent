@@ -2,20 +2,35 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
-
-public class Groupe extends Observable{
+public abstract class Groupe extends Observable implements Observer {
 	private String name;
 	private ArrayList<Objet> listeObjet = new ArrayList<>();
+	private ArrayList<Categorie> listeCategories = new ArrayList<>();
+
+	public boolean addLink(Categorie link) {
+		return listeCategories.add(link);
+	}
+
+	public boolean removeLink(Categorie link) {
+		return listeCategories.remove(link);
+	}
+
+	public ArrayList<Categorie> getListeLink() {
+		return listeCategories;
+	}
+
 	private ArrayList<Utilisateur> listeMembres = new ArrayList<>();
 
 	public Groupe(String name) {
 		super();
 		this.name = name;
 	}
+
+	public abstract boolean isGestionnaire(Utilisateur user);
+
+	public abstract ArrayList<Utilisateur> getListeGestionnaire();
 
 	public String getName() {
 		return name;
@@ -24,7 +39,7 @@ public class Groupe extends Observable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int indexOfObjet(Object o) {
 		return listeObjet.indexOf(o);
 	}
@@ -32,8 +47,25 @@ public class Groupe extends Observable{
 	public Objet[] getListeObjet() {
 		return listeObjet.toArray(new Objet[0]);
 	}
-	
-	public Objet getObjet(int index){
+
+	public void removeObjet(Objet objet) {
+		if (listeObjet.contains(objet)) {
+			for (Link l : objet.getLinks()) {
+				l.getObjetA().removeLink(l);
+				l.getObjetB().removeLink(l);
+			}
+			listeObjet.remove(objet);
+			this.setChanged();
+			this.notifyObservers();
+		} else {
+			for (Objet nObjet : listeObjet) {
+				if (nObjet instanceof Repertoire)
+					((Repertoire) nObjet).removeObjet(objet);
+			}
+		}
+	}
+
+	public Objet getObjet(int index) {
 		return listeObjet.get(index);
 	}
 
@@ -44,6 +76,7 @@ public class Groupe extends Observable{
 	public void addObjet(Objet e) {
 		e.setGroupe(this);
 		listeObjet.add(e);
+		e.addObserver(this);
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -80,6 +113,12 @@ public class Groupe extends Observable{
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 }

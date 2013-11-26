@@ -22,6 +22,13 @@ public class Utilisateur extends Observable {
 		this.notifyObservers();
 	}
 
+	public boolean removeGroupe(Groupe groupe) {
+		boolean result = listeGroupes.remove(groupe);
+		this.setChanged();
+		this.notifyObservers();
+		return result;
+	}
+
 	public void setListeGroupes(ArrayList<Groupe> listeGroupes) {
 		this.listeGroupes = listeGroupes;
 	}

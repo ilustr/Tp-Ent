@@ -10,7 +10,7 @@ import model.Utilisateur;
 import controller.ConnectionAction;
 import controller.ConnectionController;
 
-public class PortailView extends JFrame implements ILoginView {
+public class PortailView extends JFrame {
 
 	private JComboBox<Utilisateur> jComboBox;
 
@@ -35,12 +35,10 @@ public class PortailView extends JFrame implements ILoginView {
 		show();
 	}
 
-	@Override
 	public Utilisateur getUtilisateur() {
 		return (Utilisateur) this.jComboBox.getSelectedItem();
 	}
 
-	@Override
 	public void closeWindow() {
 		this.dispose();
 	}
