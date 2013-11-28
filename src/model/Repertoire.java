@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import model.Objet.sousType;
+import model.Objet.natureObjet;
 
 public class Repertoire extends Objet {
 
@@ -36,7 +36,7 @@ public class Repertoire extends Objet {
 		this.listeObjet = listeObjet;
 	}
 
-	public Repertoire(String nom, sousType type) {
+	public Repertoire(String nom, natureObjet type) {
 		super(nom, type);
 		// TODO Auto-generated constructor stub
 	}

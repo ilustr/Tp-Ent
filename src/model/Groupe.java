@@ -9,12 +9,12 @@ public abstract class Groupe extends Observable implements Observer {
 	private ArrayList<Objet> listeObjet = new ArrayList<>();
 	private ArrayList<Categorie> listeCategories = new ArrayList<>();
 
-	public boolean addLink(Categorie link) {
-		return listeCategories.add(link);
+	public boolean addCategorie(Categorie categorie) {
+		return listeCategories.add(categorie);
 	}
 
-	public boolean removeLink(Categorie link) {
-		return listeCategories.remove(link);
+	public boolean removeCategorie(Categorie categorie) {
+		return listeCategories.remove(categorie);
 	}
 
 	public ArrayList<Categorie> getListeLink() {

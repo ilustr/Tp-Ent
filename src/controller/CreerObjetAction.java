@@ -19,7 +19,7 @@ public class CreerObjetAction implements ActionListener {
 	private Groupe groupe;
 	private typeObjet type;
 	private Repertoire repertoire;
-	private model.Objet.sousType stype;
+	private model.Objet.natureObjet stype;
 
 	public CreerObjetAction(CreerObjetView frame, Groupe groupe) {
 		this.frame = frame;

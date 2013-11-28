@@ -2,7 +2,7 @@ package model;
 
 public class Application extends Objet {
 
-	public Application(String nom, sousType type) {
+	public Application(String nom, natureObjet type) {
 		super(nom, type);
 		// TODO Auto-generated constructor stub
 	}

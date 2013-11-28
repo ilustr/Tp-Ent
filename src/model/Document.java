@@ -1,10 +1,10 @@
 package model;
 
-import model.Objet.sousType;
+import model.Objet.natureObjet;
 
 public class Document extends Objet {
 
-	public Document(String nom, sousType type) {
+	public Document(String nom, natureObjet type) {
 		super(nom, type);
 		// TODO Auto-generated constructor stub
 	}

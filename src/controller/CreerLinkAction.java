@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import model.Categorie;
+import view.CreerCategorieView;
 import view.UserView;
 
 public class CreerLinkAction implements ActionListener {
@@ -18,12 +19,7 @@ public class CreerLinkAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		String result = JOptionPane
-				.showInputDialog("Entrer votre nouveau lien");
-		if (userView.getSelectedGroupe() != null) {
-			this.userView.getSelectedGroupe().addLink(new Categorie(result));
-		}
+		new CreerCategorieView(userView.getSelectedGroupe());
 	}
 
 }

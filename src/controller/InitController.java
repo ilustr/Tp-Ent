@@ -21,12 +21,12 @@ public class InitController {
 		Utilisateur utilisateurJPaul = new Utilisateur("Jean-Paul");
 		Utilisateur utilisateurJJacques = new Utilisateur("Jean-Jacques");
 
-		Repertoire repertoire = new Repertoire("Repertoire TP", Objet.sousType.Conteneur);
-		Document d1 = new Document("Essai du TP", Objet.sousType.TP);
-		Document d2 = new Document("Essai du TP1", Objet.sousType.TP);
-		Document d3 = new Document("Essai du TP2", Objet.sousType.TP);
-		Document d4 = new Document("Essai du Correction TP3", Objet.sousType.Correction);
-		Document d5 = new Document("Essai du Correction TP1", Objet.sousType.Correction);
+		Repertoire repertoire = new Repertoire("Repertoire TP", Objet.natureObjet.Conteneur);
+		Document d1 = new Document("Essai du TP", Objet.natureObjet.TP);
+		Document d2 = new Document("Essai du TP1", Objet.natureObjet.TP);
+		Document d3 = new Document("Essai du TP2", Objet.natureObjet.TP);
+		Document d4 = new Document("Essai du Correction TP3", Objet.natureObjet.Correction);
+		Document d5 = new Document("Essai du Correction TP1", Objet.natureObjet.Correction);
 
 		repertoire.addObjet(d1);
 		repertoire.addObjet(d2);
@@ -45,8 +45,8 @@ public class InitController {
 		groupeInfo.addUtilisateur(utilisateurJJacques);
 		groupeInfo.addUtilisateur(utilisateurJClaude);
 		groupeInfo.addUtilisateur(utilisateurJPaul);
-		groupeInfo.addObjet(new Document("Correction TP", Objet.sousType.Correction));
-		groupeInfo.addObjet(new Document("Photo", Objet.sousType.Divers));
+		groupeInfo.addObjet(new Document("Correction TP", Objet.natureObjet.Correction));
+		groupeInfo.addObjet(new Document("Photo", Objet.natureObjet.Divers));
 
 		groupeSFA.addUtilisateur(utilisateurJJacques);
 		groupeSFA.addUtilisateur(utilisateurJPaul);
@@ -57,7 +57,7 @@ public class InitController {
 		groupeEtudiant.addUtilisateur(utilisateurJPaul);
 		groupeEtudiant.addUtilisateur(utilisateurJP);
 		groupeEtudiant.addUtilisateur(utilisateurJRene);
-		groupeEtudiant.addObjet(new Application("Tp1", Objet.sousType.TP));
+		groupeEtudiant.addObjet(new Application("Tp1", Objet.natureObjet.TP));
 		groupeEtudiant.addObjet(repertoire);
 
 		groupeTr.addUtilisateur(utilisateurJP);

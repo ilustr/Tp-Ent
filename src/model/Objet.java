@@ -9,17 +9,17 @@ public abstract class Objet extends Observable {
 		Application, Document, Repertoire
 	};
 	
-	public static enum sousType {
+	public static enum natureObjet {
 		Correction, TP, TD, Cours, Matiére, Conteneur, Divers
 	};
 
 	Groupe groupe;
 	Repertoire repertoireParent;
-	sousType type;
+	natureObjet type;
 	protected String nom;
 	private ArrayList<Link> links = new ArrayList<>();
 
-	public Objet(String nom, sousType type) {
+	public Objet(String nom, natureObjet type) {
 		this.nom = nom;
 		this.type = type;
 	}
@@ -37,11 +37,11 @@ public abstract class Objet extends Observable {
 		this.nom = nom;
 	}
 	
-	public sousType getType() {
+	public natureObjet getType() {
 		return type;
 	}
 
-	public void setType(sousType type) {
+	public void setType(natureObjet type) {
 		this.type = type;
 	}
 
@@ -77,7 +77,7 @@ public abstract class Objet extends Observable {
 		String text = "";
 
 		for (Link link : links) {
-			text += link + "\n";
+			text += link.toString(this) + "\n";
 		}
 		return text;
 	}

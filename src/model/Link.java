@@ -36,5 +36,13 @@ public class Link {
 	public String toString() {
 		return objetA + " " + categorie + " " + objetB;
 	}
+	
+	public String toString(Objet objetTete) {
+		
+		if(objetTete == this.objetB)
+			return objetB + " " + categorie.getNameInverse() + " " + objetA;
+		
+		return this.toString();
+	}
 
 }
