@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 
 import model.Groupe;
 import model.Objet;
-import model.Objet.typeObjet;
 import model.Repertoire;
 import controller.CreerObjetAction;
 
@@ -21,7 +20,7 @@ public class CreerObjetView extends JFrame {
 	private Groupe Groupe;
 	private JTextField nameText;
 	private Repertoire repertoire;
-	JComboBox<typeObjet> listeType;
+	JComboBox<String> listeType;
 	JComboBox<Objet.natureObjet> listeTypeObjet;
 
 	public CreerObjetView(Groupe groupe) {
@@ -39,7 +38,7 @@ public class CreerObjetView extends JFrame {
 
 		nameText = new JTextField();
 
-		listeType = new JComboBox<typeObjet>(Objet.typeObjet.values());
+		listeType = new JComboBox<String>(this.Groupe.getObjetType().toArray(new String[0]));
 		listeTypeObjet = new JComboBox<Objet.natureObjet>(Objet.natureObjet.values());
 		
 		JButton valider = new JButton("Valider");
@@ -74,8 +73,8 @@ public class CreerObjetView extends JFrame {
 		return nameText.getText();
 	}
 
-	public typeObjet getTypeObjet() {
-		return (typeObjet) listeType.getSelectedItem();
+	public String getTypeObjet() {
+		return (String) listeType.getSelectedItem();
 	}
 
 	public Objet.natureObjet getSousTypeObjet() {

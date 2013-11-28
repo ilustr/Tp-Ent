@@ -6,6 +6,7 @@ import model.Groupe;
 import model.GroupeInstitutionnel;
 import model.GroupePersonnel;
 import model.Objet;
+import model.ObjetAbstractFactory;
 import model.Portail;
 import model.Repertoire;
 import model.Utilisateur;
@@ -45,8 +46,8 @@ public class InitController {
 		groupeInfo.addUtilisateur(utilisateurJJacques);
 		groupeInfo.addUtilisateur(utilisateurJClaude);
 		groupeInfo.addUtilisateur(utilisateurJPaul);
-		groupeInfo.addObjet(new Document("Correction TP", Objet.natureObjet.Correction));
-		groupeInfo.addObjet(new Document("Photo", Objet.natureObjet.Divers));
+		groupeInfo.addObjet(ObjetAbstractFactory.OBJET_TYPE_DOCUMENT, "Correction TP", Objet.natureObjet.Correction);
+		groupeInfo.addObjet(ObjetAbstractFactory.OBJET_TYPE_DOCUMENT, "Photo", Objet.natureObjet.Divers);
 
 		groupeSFA.addUtilisateur(utilisateurJJacques);
 		groupeSFA.addUtilisateur(utilisateurJPaul);
@@ -57,7 +58,9 @@ public class InitController {
 		groupeEtudiant.addUtilisateur(utilisateurJPaul);
 		groupeEtudiant.addUtilisateur(utilisateurJP);
 		groupeEtudiant.addUtilisateur(utilisateurJRene);
-		groupeEtudiant.addObjet(new Application("Tp1", Objet.natureObjet.TP));
+
+		groupeEtudiant.addObjet(ObjetAbstractFactory.OBJET_TYPE_APPLICATION, "Tp1", Objet.natureObjet.TP);
+		groupeEtudiant.addObjet(ObjetAbstractFactory.OBJET_TYPE_APPLICATION, "Tp1", Objet.natureObjet.TP);
 		groupeEtudiant.addObjet(repertoire);
 
 		groupeTr.addUtilisateur(utilisateurJP);

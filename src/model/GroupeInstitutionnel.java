@@ -10,6 +10,10 @@ public class GroupeInstitutionnel extends Groupe {
 		super(name);
 	}
 
+	public boolean addGestionnaire(Utilisateur user) {
+		return listeGestionnaire.add(user);
+	}
+
 	@Override
 	public boolean isGestionnaire(Utilisateur user) {
 		for (Utilisateur u : listeGestionnaire) {

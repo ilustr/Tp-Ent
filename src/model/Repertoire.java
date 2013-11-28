@@ -11,9 +11,7 @@ public class Repertoire extends Objet {
 	public void addObjet(Objet e) {
 		e.setRepertoireParent(this);
 		listeObjet.add(e);
-
-		this.setChanged();
-		this.notifyObservers();
+		this.getObserver().notifyObservers();
 	}
 
 	public int indexOfObjet(Object o) {
@@ -54,8 +52,7 @@ public class Repertoire extends Objet {
 				l.getObjetB().removeLink(l);
 			}
 			listeObjet.remove(objet);
-			this.setChanged();
-			this.notifyObservers();
+			this.getObserver().notifyObservers();
 		} else {
 			for (Objet nObjet : listeObjet) {
 				if (nObjet instanceof Repertoire)
@@ -63,5 +60,27 @@ public class Repertoire extends Objet {
 			}
 		}
 	}
+	
+	public ArrayList<Objet> getListeRepertoire(){
+		ArrayList<Objet> resultat = new ArrayList<Objet>();
+		for(Objet o : this.getListeObjet()){
+			if(o instanceof Repertoire){
+				try {
+					resultat.add((Repertoire) o.clone());
+				} catch (CloneNotSupportedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return resultat;
+	}
+	
+    public Repertoire clone() throws CloneNotSupportedException 
+    {
+    	Repertoire copy = (Repertoire)super.clone();
+        copy.setListeObjet(getListeRepertoire());
+		return copy;
+    }
 
 }

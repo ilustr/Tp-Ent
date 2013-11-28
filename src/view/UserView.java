@@ -25,6 +25,7 @@ import model.Objet;
 import model.TreeModelPerso;
 import model.Utilisateur;
 import controller.AjouterObjetAction;
+import controller.ClonerGroupeAction;
 import controller.CreerGroupeAction;
 import controller.CreerLinkAction;
 import controller.DeleteGroupeAction;
@@ -59,7 +60,10 @@ public class UserView extends JFrame implements Observer {
 		final JMenu linkMenu = new JMenu("Lien");
 		linkMenu.setMnemonic(KeyEvent.VK_F);
 
+		final JMenu groupMenu = new JMenu("Groupe");
+		
 		menuBar.add(linkMenu);
+		menuBar.add(groupMenu);
 		moi.setJMenuBar(menuBar);
 		// File->New, N - Mnemonic
 		final JMenuItem newMenuItem = new JMenuItem("Nouveau", KeyEvent.VK_N);
@@ -69,6 +73,12 @@ public class UserView extends JFrame implements Observer {
 
 		linkMenu.add(newMenuItem);
 		linkMenu.add(seeMenuItem);
+		
+		
+		// File->New, C - Mnemonic
+		final JMenuItem copyItem = new JMenuItem("Copier", KeyEvent.VK_C);
+		copyItem.addActionListener(new ClonerGroupeAction(this));
+		groupMenu.add(copyItem);
 		// Creation des panel pour le layout
 		JPanel pBas = new JPanel();
 		pBas.setLayout(new BorderLayout());
@@ -119,8 +129,10 @@ public class UserView extends JFrame implements Observer {
 					if (!jListGroupe.getSelectedValue().isGestionnaire(
 							utilisateur)) {
 						newMenuItem.setEnabled(false);
+						copyItem.setEnabled(false);
 					} else {
 						newMenuItem.setEnabled(true);
+						copyItem.setEnabled(true);
 					}
 					ajouterObjetAction.setGroupe(jListGroupe.getSelectedValue());
 					openWindowAction.setGroupe(jListGroupe.getSelectedValue());

@@ -1,13 +1,27 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class Groupe extends Observable implements Observer {
+import model.Objet.natureObjet;
+
+public abstract class Groupe extends GroupePrototype implements Observer {
 	private String name;
+	private ObservablePerso observer;
 	private ArrayList<Objet> listeObjet = new ArrayList<>();
 	private ArrayList<Categorie> listeCategories = new ArrayList<>();
+	private ObjetAbstractFactory objetFactory;
+
+	
+	public Groupe(String name) {
+		super();
+		this.name = name;
+		this.objetFactory = new ConcreteObjetFactory();
+		this.observer = new ObservablePerso();
+	}
 
 	public boolean addCategorie(Categorie categorie) {
 		return listeCategories.add(categorie);
@@ -22,11 +36,6 @@ public abstract class Groupe extends Observable implements Observer {
 	}
 
 	private ArrayList<Utilisateur> listeMembres = new ArrayList<>();
-
-	public Groupe(String name) {
-		super();
-		this.name = name;
-	}
 
 	public abstract boolean isGestionnaire(Utilisateur user);
 
@@ -47,6 +56,23 @@ public abstract class Groupe extends Observable implements Observer {
 	public Objet[] getListeObjet() {
 		return listeObjet.toArray(new Objet[0]);
 	}
+	
+	public ArrayList<Objet> getListeRepertoires() {
+		ArrayList<Objet> resultat = new ArrayList<Objet>();
+		for(Objet o : this.listeObjet){
+			if(o instanceof Repertoire){
+				Repertoire r = null;
+				try {
+					r = (Repertoire)o.clone();
+				} catch (CloneNotSupportedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				resultat.add(r);
+			}
+		}
+		return resultat;
+	}
 
 	public void removeObjet(Objet objet) {
 		if (listeObjet.contains(objet)) {
@@ -55,7 +81,6 @@ public abstract class Groupe extends Observable implements Observer {
 				l.getObjetB().removeLink(l);
 			}
 			listeObjet.remove(objet);
-			this.setChanged();
 			this.notifyObservers();
 		} else {
 			for (Objet nObjet : listeObjet) {
@@ -71,14 +96,6 @@ public abstract class Groupe extends Observable implements Observer {
 
 	public int countObjet() {
 		return listeObjet.size();
-	}
-
-	public void addObjet(Objet e) {
-		e.setGroupe(this);
-		listeObjet.add(e);
-		e.addObserver(this);
-		this.setChanged();
-		this.notifyObservers();
 	}
 
 	public void setListeObjet(ArrayList<Objet> listeObjet) {
@@ -117,8 +134,80 @@ public abstract class Groupe extends Observable implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		this.setChanged();
 		this.notifyObservers();
 	}
 
+	public List<String> getObjetType() {
+		return objetFactory.getObjetType();
+	}
+
+	public void addObjet(String type, String nomObjet, natureObjet stype,
+			Repertoire repertoire) {
+		
+		Objet obj = objetFactory.constructObjet(type, nomObjet, stype);
+		
+		obj.setGroupe(this);
+		
+		if(repertoire != null)
+			repertoire.addObjet(obj);
+		else
+			this.listeObjet.add(obj);
+		
+		obj.addObserver(this);
+		
+		this.notifyObservers();
+	}
+
+	public void addObjet(String type, String nomObjet, natureObjet stype) {
+		
+		this.addObjet(type, nomObjet, stype, null);
+	}
+
+	public void addObjet(Objet obj) {
+		obj.setGroupe(this);
+		this.listeObjet.add(obj);
+		obj.addObserver(this);
+
+		this.notifyObservers();
+	}
+
+	public void addObserver(Observer o) {
+		observer.addObserver(o);
+	}
+
+	public int countObservers() {
+		return observer.countObservers();
+	}
+
+	public void deleteObserver(Observer o) {
+		observer.deleteObserver(o);
+	}
+
+	public void deleteObservers() {
+		observer.deleteObservers();
+	}
+
+	public void notifyObservers() {
+		observer.notifyObservers();
+	}
+
+	public boolean removeAllCategorie(ArrayList<Categorie> cat) {
+		return listeCategories.removeAll(cat);
+	}
+	
+	public boolean removeAllObjet(ArrayList<Objet> obj) {
+		return listeObjet.removeAll(obj);
+	}
+
+
+	public void notifyObservers(Object arg) {
+		observer.notifyObservers(arg);
+	}
+
+	public ArrayList<Categorie> getListeCategories() {
+		return listeCategories;
+	}
+	
+
+	
 }

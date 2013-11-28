@@ -2,17 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
-public abstract class Objet extends Observable {
+public abstract class Objet extends ObjetPrototype {
 
-	public static enum typeObjet {
-		Application, Document, Repertoire
-	};
-	
 	public static enum natureObjet {
 		Correction, TP, TD, Cours, Matiére, Conteneur, Divers
 	};
 
+	private ObservablePerso observer;
 	Groupe groupe;
 	Repertoire repertoireParent;
 	natureObjet type;
@@ -22,6 +20,7 @@ public abstract class Objet extends Observable {
 	public Objet(String nom, natureObjet type) {
 		this.nom = nom;
 		this.type = type;
+		this.observer = new ObservablePerso();
 	}
 
 	@Override
@@ -81,5 +80,12 @@ public abstract class Objet extends Observable {
 		}
 		return text;
 	}
-
+	
+	public ObservablePerso getObserver() {
+		return observer;
+	}
+	
+	public void addObserver(Observer o){
+		getObserver().addObserver(o);
+	}
 }

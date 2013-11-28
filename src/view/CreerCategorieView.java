@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,20 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTree;
 
-import model.Categorie;
 import model.Groupe;
 import model.Objet;
 import model.Objet.natureObjet;
-import model.Repertoire;
-import model.TreeModelPerso;
-import model.Objet.typeObjet;
-import controller.AjouterLinkAction;
 import controller.CreerCategorieAction;
-import controller.CreerObjetAction;
 
 public class CreerCategorieView extends JFrame {
 
